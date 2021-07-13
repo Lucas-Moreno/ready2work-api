@@ -6,43 +6,42 @@ const response200 = (res, body) => {
 }
 
 const response200WithData = (res, data) => {
-  res.status(200).json({
+  res.status(200).json(
     data
-  })
+  )
 }
 
 const response200WithMessage = (res, message) => {
-  res.status(200).json({
+  res.status(200).json(
     message
-  })
+  )
 }
 
 const response200WithDataAndMessage = (res, data, message) => {
-  res.status(200).json({
+  res.status(200).json(
     data,
     message
-  })
+  )
 }
 
 // -- 201 Created
 
 const response201WithData = (res, data) => {
-  res.status(201).json({
-    data
-  })
+  res.status(201).json(
+    data)
 }
 
 const response201WithMessage = (res, message) => {
-  res.status(201).json({
+  res.status(201).json(
     message
-  })
+  )
 }
 
 const response201WithDataAndMessage = (res, data, message) => {
-  res.status(201).json({
+  res.status(201).json(
     data,
     message
-  })
+  )
 }
 
 // -- 204 No Content
@@ -59,58 +58,58 @@ const response400 = (res, body) => {
 }
 
 const response400WithMessage = (res, message) => {
-  res.status(400).json({
+  res.status(400).json(
     message
-  })
+  )
 }
 
 const response400WithMessageAndCode = (res, message, code) => {
-  res.status(400).json({
+  res.status(400).json(
     message,
     code
-  })
+  )
 }
 
 const response400WithCode = (res, code) => {
-  res.status(400).json({
+  res.status(400).json(
     code
-  })
+  )
 }
 //-- 401 Unauthorized
 
 const response401WithMessage = (res, message) => {
-  res.status(401).json({
+  res.status(401).json(
     message
-  })
+  )
 }
 
 // -- 403 Forbidden
 
 const response403WithMessage = (res, message) => {
-  res.status(403).json({
+  res.status(403).json(
     message
-  })
+  )
 }
 
 const response403WithMessageAndCode = (res, message, code) => {
-  res.status(403).json({
+  res.status(403).json(
     message,
     code
-  })
+  )
 }
 
 // -- 404 Not Found
 
 const response404WithMessage = (res, message) => {
-  res.status(404).json({
+  res.status(404).json(
     message
-  })
+  )
 }
 
 const response500WithMessage = (res, message) => {
-  res.status(500).json({
+  res.status(500).json(
     message
-  })
+  )
 }
 
 module.exports = {
