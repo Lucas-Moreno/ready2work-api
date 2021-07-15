@@ -22,7 +22,10 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "email-validator": "^2.0.4",
     "express": "^4.17.1",
+    "firebase": "^8.7.1",
+    "firebase-admin": "^9.10.0",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.12",
     "process": "^0.11.10"
