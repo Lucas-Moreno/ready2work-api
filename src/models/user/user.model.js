@@ -5,18 +5,18 @@ const getUser = async () => {
   return res
 }
 
-const createUserByFirebase = async (name, email, uid) => {
-  const res = await db.simpleQuery("INSERT INTO user SET name=?, firebaseUid=?, email=?", [name, uid, email])
+const createUserByFirebase = async (name, email, password) => {
+  const res = await pools.simpleQuery("INSERT INTO user SET name=?, password=?, email=?", [name, password, email])
   return res
 }
 
 const getUserStatusModel = async (id) => {
-  const res = await db.simpleQuery("SELECT id, name, email FROM user WHERE id = ?", [id])
+  const res = await pools.simpleQuery("SELECT id, name, email FROM user WHERE id = ?", [id])
   return res
 }
 
 const findByUID = async (uid) => {
-  const res = await db.simpleQuery("SELECT id FROM user WHERE firebaseUid = ?", [uid])
+  const res = await pools.simpleQuery("SELECT id FROM user WHERE firebaseUid = ?", [uid])
   return res.length > 0 ? res : false
 }
 

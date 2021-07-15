@@ -69,6 +69,9 @@ const register = async (req, res) => {
   if (!validator.validate(req.body.email)) {
     return response400WithMessage(res, "Incorrect email spelling")
   }
+  const email = req.body.email
+  const password = req.body.password
+  const name = req.body.name
 
   admin
     .auth()
@@ -78,6 +81,7 @@ const register = async (req, res) => {
       displayName: req.body.name,
     })
     .then(() => {
+      UserModel.createUserByFirebase(name, email, password)
       return response201WithMessage(res, "Successful registration")
     })
     .catch((e) => {
