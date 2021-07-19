@@ -6,7 +6,7 @@ const {
   response400WithMessage,
   response401WithMessage,
   response500WithMessage,
-  response201WithData,
+  response201WithMessage,
 } = require("../helpers/expressRes");
 
 const extractToken = (req) => {
@@ -61,6 +61,7 @@ const verifyToken = async (req, res, next) => {
           }
         }
       } catch (e) {
+        console.log(e)
         return response500WithMessage(res, "User not defined ! T_T");
       }
     })

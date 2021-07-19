@@ -1,7 +1,7 @@
 const pools = require("../../../db.js")
 
 const getUser = async (idUser) => {
-  const res = pools.simpleQuery("SELECT * from user where id=?", [idUser])
+  const res = await pools.simpleQuery("SELECT * from user where id=?", [idUser])
   return res
 }
 
