@@ -6,6 +6,7 @@ module.exports = (app) => {
   const userController = require("../controllers/user/user.controller.js")
   const authentificationController = require("../controllers/authentification/authentification.js")
   const testController = require("../controllers/test/testController.js")
+  const roomController = require("../controllers/room/room.controller.js")
 
   // Welcome API
   app.get("/", (req, res) => {
@@ -24,4 +25,8 @@ module.exports = (app) => {
 
   // Routes user
   app.get("/api/user", userController.getUser)
+
+  // Routes room
+  app.get("/api/room", roomController.getAllRoom)
+  app.get("/api/room/:id", roomController.getRoom)
 }
