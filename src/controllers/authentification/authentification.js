@@ -33,15 +33,18 @@ const validateUser = async (req, res) => {
                 return response201WithData(res, creatUSer)
               }
             } catch (e) {
+              console.log(e)
               return response500WithMessage(res, "Register failed")
             }
           }
         })
         .catch((e) => {
+          console.log(e)
           return response500WithMessage(res, "Register failed")
         })
     })
     .catch((e) => {
+      console.log(e)
       response401WithMessage(res, "Invalid token")
     })
 }
@@ -79,6 +82,7 @@ const register = async (req, res) => {
       return response201WithMessage(res, "Successful registration")
     })
     .catch((e) => {
+      console.log(e + "3")
       return response500WithMessage(res, "Register failed")
     })
 }
@@ -96,6 +100,7 @@ const login = async (req, res) => {
       return response201WithData(res, idToken)
     })
     .catch(function (e) {
+      console.log(e + "4")
       return response401WithMessage(res, "Login failed")
     })
 }

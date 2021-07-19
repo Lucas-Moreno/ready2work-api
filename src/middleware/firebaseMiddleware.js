@@ -6,6 +6,7 @@ const {
   response400WithMessage,
   response401WithMessage,
   response500WithMessage,
+  response201WithData,
 } = require("../helpers/expressRes");
 
 const extractToken = (req) => {
@@ -56,6 +57,7 @@ const verifyToken = async (req, res, next) => {
           const searchUserByUid = await UserModel.findByUID(decodedToken.uid);
           if (searchUserByUid) {
             req.user = [[decodedToken], [searchUserByUid[0].id]];
+            return response201WithMessage(res, "Connexion réussite")
           }
         }
       } catch (e) {

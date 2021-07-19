@@ -12,6 +12,7 @@ const getUser = async (req, res) => {
       return response201WithData(res, data)
     }
     catch (e) {
+      console.log(e)
       return response500WithMessage(res, "Oups failed ! T_T")
     }
   }
