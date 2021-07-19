@@ -21,5 +21,5 @@ module.exports = (app) => {
   app.post("/auth/user/login", authentificationController.login)
 
   // Routes user
-  app.get("/user", userController.getUser)
+  app.get("/api/user", userController.getUser)
 }

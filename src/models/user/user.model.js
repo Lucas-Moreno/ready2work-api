@@ -1,12 +1,15 @@
 const pools = require("../../../db.js")
 
-const getUser = async () => {
-  const res = await pools.simpleQuery("SELECT * from user")
+const getUser = async (idUser) => {
+  const res = await pools.simpleQuery("SELECT * from user where id=?", [idUser])
   return res
 }
 
-const createUserByFirebase = async (name, email, password) => {
-  const res = await pools.simpleQuery("INSERT INTO user SET name=?, password=?, email=?", [name, password, email])
+const createUserByFirebase = async (name, email, uid) => {
+  console.log(name)
+  console.log(email)
+  console.log(uid)
+  const res = await pools.simpleQuery("INSERT INTO user SET name=?, firebaseUid=?, email=?", [name, uid, email])
   return res
 }
 

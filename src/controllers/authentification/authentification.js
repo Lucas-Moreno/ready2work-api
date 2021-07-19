@@ -11,7 +11,6 @@ const { response200WithData, response201WithMessage, response201WithData, respon
 
 const validateUser = async (req, res) => {
   const token = firebaseMiddleware.extractToken(req)
-
   admin
     .auth()
     .verifyIdToken(token)
@@ -39,7 +38,6 @@ const validateUser = async (req, res) => {
           }
         })
         .catch((e) => {
-          console.log(e)
           return response500WithMessage(res, "Register failed")
         })
     })
@@ -69,9 +67,6 @@ const register = async (req, res) => {
   if (!validator.validate(req.body.email)) {
     return response400WithMessage(res, "Incorrect email spelling")
   }
-  const email = req.body.email
-  const password = req.body.password
-  const name = req.body.name
 
   admin
     .auth()
@@ -81,11 +76,9 @@ const register = async (req, res) => {
       displayName: req.body.name,
     })
     .then(() => {
-      UserModel.createUserByFirebase(name, email, password)
       return response201WithMessage(res, "Successful registration")
     })
     .catch((e) => {
-        console.log(e)
       return response500WithMessage(res, "Register failed")
     })
 }
@@ -103,7 +96,6 @@ const login = async (req, res) => {
       return response201WithData(res, idToken)
     })
     .catch(function (e) {
-      console.log(e)
       return response401WithMessage(res, "Login failed")
     })
 }
