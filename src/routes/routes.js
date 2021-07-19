@@ -5,11 +5,13 @@ module.exports = (app) => {
   // Controller
   const userController = require("../controllers/user/user.controller.js")
   const authentificationController = require("../controllers/authentification/authentification.js")
+  const testController = require("../controllers/test/testController.js")
 
   // Welcome API
   app.get("/", (req, res) => {
     res.send("Welcome to my api.")
   })
+  app.get("/test", testController.test)
 
   // API VERIFY REQUETE
   /* checks if the API is well secured by a bearer Token */
