@@ -1,4 +1,5 @@
 module.exports = (app) => {
+
   // Middleware
   const { verifyToken } = require("../middleware/firebaseMiddleware.js")
 
@@ -7,6 +8,7 @@ module.exports = (app) => {
   const authentificationController = require("../controllers/authentification/authentification.js")
   const testController = require("../controllers/test/testController.js")
   const roomController = require("../controllers/room/room.controller.js")
+  const clientController = require("../../dbInflux.js")
 
   // Welcome API
   app.get("/", (req, res) => {
@@ -26,7 +28,7 @@ module.exports = (app) => {
   // Routes user
   app.get("/api/user", userController.getUser)
 
-  // Routes room
-  app.get("/api/room", roomController.getAllRoom)
-  app.get("/api/room/:id", roomController.getRoom)
+
+  // Routes influx
+  app.get("/api/room/:id", clientController.getAllRoom)
 }
