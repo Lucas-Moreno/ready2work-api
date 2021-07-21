@@ -1,6 +1,6 @@
 const { response201WithData, response500WithMessage, response400WithMessage } = require("./src/helpers/expressRes.js")
 
-const getAllRoom = async (req, res) => {
+const getRoom = async (req, res) => {
   const { InfluxDB } = require("@influxdata/influxdb-client")
 
   // You can generate a Token from the "Tokens Tab" in the UI
@@ -34,7 +34,6 @@ const getAllRoom = async (req, res) => {
         const o = tableMeta.toObject(row)
         mesureTable.push(o)
         for (const mesure of mesureTable) {
-          console.log(mesure._measurement)
           if (mesure._measurement === "Bruit") {
             noise = {
               measurement: mesure._measurement,
@@ -65,7 +64,7 @@ const getAllRoom = async (req, res) => {
           noise,
           temperature,
           brightness,
-          nbPers
+          nbPers,
         }
       },
       error(error) {
@@ -85,4 +84,76 @@ const getAllRoom = async (req, res) => {
   }
 }
 
-module.exports = { getAllRoom }
+const getAllRoom = async (req, res) => {
+  const { InfluxDB } = require("@influxdata/influxdb-client")
+
+  // You can generate a Token from the "Tokens Tab" in the UI
+  const token = "HcbRoaYphnOrC2-gsjoC_Y7Rt9_fHugzWYVxcbX6aisiqzSGOO29BvxOxVC5oDl4-UEIoAHIKJjJdN1RfdkAqA=="
+  const org = "lucas.moreno@hetic.net"
+  const bucket = "Ready2work"
+
+  const client = new InfluxDB({ url: "https://eu-central-1-1.aws.cloud2.influxdata.com", token: token })
+
+  const query = `
+  from(bucket: "Ready2work")
+    |> range(start: -1h)
+    |> filter(fn: (r) => r["_measurement"] == "Bruit" or r["_measurement"] == "Luminosité" or r["_measurement"] == "NbPers" or r["_measurement"] == "Temperature")
+    |> filter(fn: (r) => r["_field"] == "data_value")
+    |> filter(fn: (r) => r["nodeID"] == "A101" or r["nodeID"] == "A102" or r["nodeID"] == "A103" or r["nodeID"] == "A104" or r["nodeID"] == "A105" or r["nodeID"] == "A106" or r["nodeID"] == "A107" or r["nodeID"] == "A108" or r["nodeID"] == "A109" or r["nodeID"] == "A110" or r["nodeID"] == "B101" or r["nodeID"] == "B102" or r["nodeID"] == "B103" or r["nodeID"] == "B104" or r["nodeID"] == "B105" or r["nodeID"] == "B106" or r["nodeID"] == "B107")
+    |> yield(name: "mean")
+  `
+  const queryApi = client.getQueryApi(org)
+
+
+  let table = []
+  let obj = {}
+
+  queryApi.queryRows(query, {
+    next(row, tableMeta) {
+      const o = tableMeta.toObject(row)
+      obj = {
+        room : o.nodeID,
+        measurement : o._measurement,
+        value: o._value
+      }
+      table.push(obj)
+    },
+    error(error) {
+      console.error(error)
+    },
+    complete() {
+      if (0 === 0) {
+        return response201WithData(res, table)
+      } else {
+        return response400WithMessage(res, "You don't have room")
+      }
+    },
+  })
+}
+
+/* 
+[
+{
+    "room": "A102",
+    "noise": {
+        "measurement": "Bruit",
+        "value": 84
+    },
+    "temperature": {
+        "measurement": "Temperature",
+        "value": 22
+    },
+    "brightness": {
+        "measurement": "Luminosité",
+        "value": 1112
+    },
+    "nbPers": {
+        "measurement": "NbPers",
+        "value": 12
+    }
+}
+]
+
+*/
+
+module.exports = { getRoom, getAllRoom }
