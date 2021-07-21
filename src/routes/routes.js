@@ -7,8 +7,8 @@ module.exports = (app) => {
   const userController = require("../controllers/user/user.controller.js")
   const authentificationController = require("../controllers/authentification/authentification.js")
   const testController = require("../controllers/test/testController.js")
-  const roomController = require("../controllers/room/room.controller.js")
   const clientController = require("../../dbInflux.js")
+  const reservationController = require("../controllers/reservation/reservation.controller.js")
 
   // Welcome API
   app.get("/", (req, res) => {
@@ -32,4 +32,8 @@ module.exports = (app) => {
   // Routes influx
   app.get("/api/room", clientController.getAllRoom)
   app.get("/api/room/:id", clientController.getRoom)
+
+  // Routes reservation
+  app.post("/api/reservation/:id", reservationController.createReservation)
+  app.get("/api/reservation", reservationController.getAllReservation)
 }

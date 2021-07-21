@@ -14,7 +14,7 @@ const getRoom = async (req, res) => {
 
   const query = `
   from(bucket: "Ready2work")
-    |> range(start: -3h)
+    |> range(start: -1h)
     |> filter(fn: (r) => r["_measurement"] == "Temperature" or r["_measurement"] == "NbPers" or r["_measurement"] == "Luminosité" or r["_measurement"] == "Bruit")
     |> filter(fn: (r) => r["_field"] == "data_value")
     |> filter(fn: (r) => r["nodeID"] == "${req.params.id}")
