@@ -175,6 +175,16 @@ const getLuminosite = async (req, res) => {
 }
 
 const getDecibel = async (req, res) => {
+  const { InfluxDB } = require("@influxdata/influxdb-client")
+
+  // You can generate a Token from the "Tokens Tab" in the UI
+  const token = "HcbRoaYphnOrC2-gsjoC_Y7Rt9_fHugzWYVxcbX6aisiqzSGOO29BvxOxVC5oDl4-UEIoAHIKJjJdN1RfdkAqA=="
+  const org = "lucas.moreno@hetic.net"
+  const bucket = "Ready2work"
+
+  const client = new InfluxDB({ url: "https://eu-central-1-1.aws.cloud2.influxdata.com", token: token })
+
+  const queryApi = client.getQueryApi(org)
   const query = `
   from(bucket: "Ready2work")
     |> range(start: -1h)
@@ -210,6 +220,16 @@ const getDecibel = async (req, res) => {
 }
 
 const getTemperature = async (req, res) => {
+  const { InfluxDB } = require("@influxdata/influxdb-client")
+
+  // You can generate a Token from the "Tokens Tab" in the UI
+  const token = "HcbRoaYphnOrC2-gsjoC_Y7Rt9_fHugzWYVxcbX6aisiqzSGOO29BvxOxVC5oDl4-UEIoAHIKJjJdN1RfdkAqA=="
+  const org = "lucas.moreno@hetic.net"
+  const bucket = "Ready2work"
+
+  const client = new InfluxDB({ url: "https://eu-central-1-1.aws.cloud2.influxdata.com", token: token })
+
+  const queryApi = client.getQueryApi(org)
   const query = `
   from(bucket: "Ready2work")
     |> range(start: -1h)
@@ -245,6 +265,16 @@ const getTemperature = async (req, res) => {
 }
 
 const getnbPers = async (req, res) => {
+  const { InfluxDB } = require("@influxdata/influxdb-client")
+
+  // You can generate a Token from the "Tokens Tab" in the UI
+  const token = "HcbRoaYphnOrC2-gsjoC_Y7Rt9_fHugzWYVxcbX6aisiqzSGOO29BvxOxVC5oDl4-UEIoAHIKJjJdN1RfdkAqA=="
+  const org = "lucas.moreno@hetic.net"
+  const bucket = "Ready2work"
+
+  const client = new InfluxDB({ url: "https://eu-central-1-1.aws.cloud2.influxdata.com", token: token })
+
+  const queryApi = client.getQueryApi(org)
   const query = `
   from(bucket: "Ready2work")
     |> range(start: -1h)
