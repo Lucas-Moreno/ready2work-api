@@ -30,8 +30,11 @@ module.exports = (app) => {
 
 
   // Routes influx
-  app.get("/api/room/luminosite", clientController.getLuminosite)
   app.get("/api/room", clientController.getAllRoom)
+  app.get("/api/room/luminosite", clientController.getLuminosite)
+  app.get("/api/room/nbPers", clientController.getnbPers)
+  app.get("/api/room/temperature", clientController.getTemperature)
+  app.get("/api/room/decibel", clientController.getDecibel)
   app.get("/api/room/:id", clientController.getRoom)
 
   // Routes reservation
