@@ -30,6 +30,7 @@ module.exports = (app) => {
 
 
   // Routes influx
+  app.get("/api/room/luminosite", clientController.getLuminosite)
   app.get("/api/room", clientController.getAllRoom)
   app.get("/api/room/:id", clientController.getRoom)
 
