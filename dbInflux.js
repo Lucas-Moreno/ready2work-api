@@ -215,7 +215,7 @@ const getTemperature = async (req, res) => {
     |> range(start: -1h)
     |> filter(fn: (r) => r["_measurement"] == "Temperature")
     |> filter(fn: (r) => r["_field"] == "data_value")
-    |> filter(fn: (r) => r["nodeID"] == "A101" or r["nodeID"] == "A102" or r["nodeID"] == "A103" or r["nodeID"] == "A104" or r["nodeID"] == "A105" or r["nodeID"] == "A106" or r["nodeID"] == "A107" or r["nodeID"] == "A108" or r["nodeID"] == "A109" or r["nodeID"] == "A110" or r["nodeID"] == "B101" or r["nodeID"] == "B102" or r["nodeID"] == "B103" or r["nodeID"] == "B104" or r["nodeID"] == "B105" or r["nodeID"] == "B106")
+    |> filter(fn: (r) => r["nodeID"] == "A101" or r["nodeID"] == "A102" or r["nodeID"] == "A103" or r["nodeID"] == "A104" or r["nodeID"] == "A105" or r["nodeID"] == "A106" or r["nodeID"] == "A107" or r["nodeID"] == "A108" or r["nodeID"] == "A109" or r["nodeID"] == "A110" or r["nodeID"] == "B101" or r["nodeID"] == "B102" or r["nodeID"] == "B103" or r["nodeID"] == "B104" or r["nodeID"] == "B105" or r["nodeID"] == "B106" or r["nodeID"] == "B107")
     |> yield(name: "mean")
   `
   let table = []
