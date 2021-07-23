@@ -9,6 +9,7 @@ const app = express()
 var corsOptions = {
   origin: "http://localhost:80",
   origin: "http://localhost:3000",
+  origin: "https://ready-2-work.netlify.app/"
 }
 
 app.use(cors(corsOptions))
